@@ -1,17 +1,20 @@
-db.collection("noticias").orderBy("data", "desc").onSnapshot(snapshot => {
+```javascript
+let noticias = JSON.parse(localStorage.getItem("noticias")) || [];
+
+function carregar() {
   const area = document.getElementById("noticias");
   area.innerHTML = "";
 
-  snapshot.forEach(doc => {
-    let n = doc.data();
-
+  noticias.slice().reverse().forEach(n => {
     area.innerHTML += `
       <div class="noticia">
-        <h2>${n.titulo}</h2>
         <img src="${n.imagem}">
+        <h2>${n.titulo}</h2>
         <p>${n.conteudo}</p>
-        <small>${new Date(n.data).toLocaleString()}</small>
       </div>
     `;
   });
-});
+}
+
+carregar();
+```
