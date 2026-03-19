@@ -27,14 +27,20 @@ img {
 </head>
 <body>
 
-<div class="container">
-  <h1>Homem é flagrado em situação inusitada</h1>
-  <img src="https://via.placeholder.com/800x400">
-  <p>
-    Aqui vai o texto completo da notícia. Você pode escrever tudo aqui,
-    como se fosse um portal de notícias profissional.
-  </p>
-</div>
+<div class="container" id="conteudo"></div>
+
+<script>
+let noticias = JSON.parse(localStorage.getItem("noticias")) || [];
+let index = localStorage.getItem("noticiaSelecionada");
+
+let n = noticias[index];
+
+document.getElementById("conteudo").innerHTML = `
+  <h1>${n.titulo}</h1>
+  <img src="${n.imagem}">
+  <p>${n.conteudo}</p>
+`;
+</script>
 
 </body>
 </html>
